@@ -18,26 +18,25 @@ class Quiz {
 // shuffleQuestions()
      shuffleQuestions(){
         for (let i=this.questions.length-1;i>0;i--){
-            const j=Math.floor(Math.random()*(i,1));
+            const j=Math.floor(Math.random()*(i + 1));
             [this.questions[i],this.questions[j]] = [this.questions[j],this.questions[i]];
      }
     }
  //checkAnswer()   
      checkAnswer(answer){
-         const currentQuestionIndex = this.getQuestion();
-        if (currentQuestionIndex.correctAnswer===answer) {
-            this.correctAnswer +=1;
-            return this.correctAnswers;
+      const currentQuestion = this.getQuestion();
+        if (currentQuestion.Answer === this.answer) {
+            this.correctAnswers +=1;
+            return true;
+        }
+        return false;
      }
-    } 
+    
 //hasEnded()
      hasEnded(){
-        if (this.currentQuestionIndex >= this.questions.length){
-            return true;
-        } else {
-            return false;
-        }
+        return this.currentQuestionIndex >= this.questions.length;
     }
+
 //filterQuestionByDifficulty()
     filterQuestionsByDifficulty(difficulty) {
         
@@ -60,6 +59,7 @@ class Quiz {
 
 
 
+
 const questions = [
     { question: "What is 2 + 2?", answer: 4, difficulty: 1 },
     { question: "What is the capital of France?", answer: "Paris", difficulty: 2 },
@@ -70,6 +70,7 @@ const quiz = new Quiz(questions);
 console.log(quiz.checkAnswer(4)); 
 console.log(quiz.correctAnswers);
 console.log(quiz.checkAnswer("London"));
+console.log(quiz.checkAnswer("Paris"));
 quiz.filterQuestionsByDifficulty(1); 
 console.log(quiz.questions); 
 console.log(quiz.averageDifficulty());
