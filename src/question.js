@@ -20,6 +20,7 @@ for (let i = this.choices.length - 1; i > 0; i--) {
     
 }
 
+
 }
 }
 
