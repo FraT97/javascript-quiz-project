@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   quiz.shuffleQuestions();
 
   let timer;
-  let firstQuestionAnswered = false;  // Track if the first question is answered
+  let firstQuestionAnswered = false;  
 
   showQuestion();
   startTimer();
@@ -56,23 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
     endView.style.display = "none";
     quizView.style.display = "block";
     
-    // Reset the quiz state
+    
     quiz.currentQuestionIndex = 0;
     quiz.correctAnswers = 0;
     quiz.timeRemaining = quizDuration;
     quiz.shuffleQuestions();
   
-    // Reset progress bar and other UI elements
-    progressBar.style.width = '0%'; // Reset the progress bar to 0% when restarting
-    updateTimerDisplay(); // Update timer display to the initial value
     
-    // Start the timer
-    startTimer();
+    progressBar.style.width = '0%'; 
+    updateTimerDisplay(); 
     
-    // Show the first question
-    showQuestion();
     
-    // Reset the flag for the first question
+startTimer();
+    
+showQuestion();
+    
+   
     firstQuestionAnswered = false;
   }
   
@@ -91,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     questionContainer.innerText = question.text;
 
-    // Update the question count
+    
     questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${quiz.totalQuestions}`;
 
     question.choices.forEach(choice => {
@@ -121,9 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
       quiz.checkAnswer(selectedAnswer);
       quiz.moveToNextQuestion();
 
-      // Only update the progress bar after the first question is answered
+      
       if (!firstQuestionAnswered) {
-        firstQuestionAnswered = true;  // Mark the first question as answered
+        firstQuestionAnswered = true;  
       }
 
       updateProgressBar();
@@ -134,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateProgressBar() {
-    // Update the progress bar after the first question is answered
+    
     const percentage = ((quiz.currentQuestionIndex) / quiz.totalQuestions) * 100;
     progressBar.style.width = `${percentage}%`;
   }
@@ -142,10 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function showResults() {
     console.log("Showing results...");
   
-    clearInterval(timer); // Stop the timer when showing results
+    clearInterval(timer); 
   
     quizView.style.display = "none";
-    endView.style.display = "flex";  // This should show the end view
+    endView.style.display = "flex";  
   
     const correctAnswers = quiz.getCorrectAnswersCount();
   
